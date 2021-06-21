@@ -1,0 +1,60 @@
+{% extends 'user/user_base1.html' %}
+{% block title %}
+<title>修改信息</title>
+{% endblock %}
+
+{% block mycss %}
+    <style>
+    footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+    </style>
+
+{% endblock %}
+{% load staticfiles %}
+
+
+
+
+{% block content %}
+{#<div class="blogs">#}
+    <div class="main">
+<form action="{% url 'user:user_change' %}" method="post" enctype="multipart/form-data" class="smart-green">
+    <h1>修改信息
+    </h1>
+    <label>
+        <span>名称 :</span>
+        <input id="name" type="text" name="username" value="{{ request.user.username }}" placeholder="Your Full Name" />
+    </label>
+    <label>
+        <span>邮箱:</span>
+        <input id="email" type="email" name="email" value="{{ request.user.email }}" placeholder="" />
+    </label>
+    <label>
+        <span>职业:</span>
+        <input id="job" type="text" name="job" value="{{ request.user.job }}" placeholder="" />
+    </label>
+    <label>
+        <span>头像:</span>
+        <img id="icon" src="{{ MEDIA_URL }}{{ request.user.icon }}" alt="">
+        <input id="name" type="file" name="icon" placeholder="" />
+    </label>
+    <label>
+        <span>简介 :</span>
+        <textarea id="description" type="text" name="description" placeholder="介绍自己" value="{{ request.user.description }}"></textarea>
+    </label>
+
+    <label>
+        <span>&nbsp;</span>
+        <input type="submit" class="button" value="更新信息" />
+    </label>
+</form>
+
+
+    </div>
+{#</div>#}
+
+
+{% endblock %}

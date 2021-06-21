@@ -1,0 +1,76 @@
+{% extends 'user/user_base1.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>个人中心</title>
+{% endblock %}
+{% block mycss %}
+    <style>
+    {#footer {#}
+    {#    position: absolute;#}
+    {#    bottom: 0;#}
+    {#    left: 0;#}
+    {#}#}
+    .sidebar{
+        height: 900px;
+    }
+    }
+
+    </style>
+
+{% endblock %}
+{% block content %}
+<article>
+<h1 class="t_nav"><span>记录生活，记录学习，冬去春来，枯荣无恙。</span><a href="#" class="n2">我的博客</a></h1>
+  <div class="blogs">
+      {% for dararticle in page.object_list %}
+                <li><span class="blogpic"><a href="{% url 'article:detail' %}?id={{ dararticle.id }}"><img src="{{ MEDIA_URL }}{{ dararticle.image }}"></a></span>
+                    <h3 class="blogtitle"><a href="{% url 'article:detail' %}?id={{ dararticle.id }}">{{ dararticle.title }}</a></h3>
+                    <div class="bloginfo">
+                        <p>{{ dararticle.desc }}</p>
+                    </div>
+                    <div class="autor">
+                        <span class="au01"><a href="/">{{ dararticle.user.username }}</a></span>
+{#                        <a href="/" title="CSS3|Html5" target="_blank"class="classname">{{ dararticle.tags.all }}</a></span>#}
+                        <span class="dtime">{{ dararticle.date }}</span>
+                        <span class="viewnum">浏览（<a href="#">{{ dararticle.click_num }}</a>）</span>
+                        <span class="viewnum">点赞（<a href="#">{{ dararticle.love_num }}</a>）</span>
+                        <span class="readmore"><a href="{% url 'article:detail' %}?id={{ dararticle.id }}">阅读原文</a></span>
+                    </div>
+                </li>
+            {% endfor %}
+            <div class="pagelist">
+                <a href="{% url 'user:user_center' %}?page=1">首页</a>
+                <a href="{% url 'user:user_center' %}?page={% if page.has_previous %}{{ page.previous_page_number }}{% else %}1{% endif %}">上一页</a>
+            {% for page_number in page.paginator.page_range %}
+                    {% if page.number == page_number %}
+                        <b>{{ page_number }}</b>
+                    {% else %}
+                        <a href="{% url 'user:user_center' %}?page={{ page_number }}">{{ page_number }}</a>
+                    {% endif %}
+            {% endfor %}
+                <a href="{% url 'user:user_center' %}?page={% if page.has_next %}{{ page.next_page_number }}{% else %}{{ page.paginator.num_pages }}{% endif %}">下一页</a>
+                <a href="{% url 'user:user_center' %}?page={{ page.paginator.num_pages }}">尾页</a>
+            </div>
+
+  </div>
+  <div class="sidebar">
+    <div class="about">
+      <div class="avatar"> <img src="{{ MEDIA_URL }}{{ user.icon }}" alt=""> </div>
+      <p class="abname">user | {{ user.username }}</p>
+      <p class="abposition">{{ user.job }}</p>
+      <div class="abtext"> {{ user.description }} </div>
+        <p class="abposition"><a style="color: #0dd0ce;padding-bottom: 10px;" href="{% url "user:user_change" %}">修改个人资料>></a></p>
+    </div>
+      <div class="cloud">
+                <h2 class="hometitle">标签云</h2>
+                <ul>
+                {% for tag in tag_list %}
+                        <a href="#">{{ tag.name }}</a>
+                {% endfor %}
+                </ul>
+            </div>
+  </div>
+</article>
+<div class="blank"></div>
+{% endblock content%}

@@ -1,0 +1,173 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+{% block  title %}
+    <title>词云</title>
+{% endblock %}
+
+{% block mycss %}
+
+    <script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+    <script src="{% static 'js/share/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/share/jquery.minicolors.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/share/jquery.minicolors.css' %}"/>
+<style>
+
+.image_par{
+    height: 800px;
+}
+.image_par div{
+    float: left;
+}
+.image_l{
+    width: 63%;
+}
+.minicolors-swatch {
+                position: absolute;
+                vertical-align: middle;
+                background: url({% static 'images/jquery.minicolors.png' %}) -80px 0;
+                border: solid 1px #ccc;
+                cursor: text;
+                padding: 0;
+                margin: 0;
+                display: inline-block;
+            }
+.minicolors-slider, .minicolors-opacity-slider {
+    position: absolute;
+    top: 1px;
+    left: 152px;
+    width: 20px;
+    height: 150px;
+    background: white url({% static 'images/jquery.minicolors.png' %}) 0 0;
+    cursor: row-resize;
+}
+.minicolors .minicolors-grid {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 150px;
+    height: 150px;
+    background: url({% static 'images/jquery.minicolors.png' %}) -120px 0;
+    cursor: crosshair;
+}
+</style>
+    <script>
+            $(document).ready(function() {
+
+                $('.demo').each(function() {
+                    //
+                    // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                    //
+                    //  $(selector).minicolors();
+                    //
+                    // The way I've done it below is just for the demo, so don't get confused
+                    // by it. Also, data- attributes aren't supported at this time...they're
+                    // only used for this demo.
+                    //
+                    $(this).minicolors({
+                        control: $(this).attr('data-control') || 'hue',
+                        defaultValue: $(this).attr('data-defaultValue') || '',
+                        inline: $(this).attr('data-inline') === 'true',
+                        letterCase: $(this).attr('data-letterCase') || 'lowercase',
+                        opacity: $(this).attr('data-opacity'),
+                        position: $(this).attr('data-position') || 'bottom left',
+                        change: function(hex, opacity) {
+                            if (!hex)
+                                return;
+                            if (opacity)
+                                hex += ', ' + opacity;
+                            try {
+                                console.log(hex);
+                            } catch (e) {
+                            }
+                        },
+                        theme: 'bootstrap'
+                    });
+
+                });
+
+            });
+        </script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" style="background: #f1f1f1">
+    <form action="{% url 'user:wordcloud' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br>
+        <div class="form-group">
+            <label for="exampleInputEmail1"><h3>输入文本</h3></label>
+            <p class="help-block">根据文本中的词语出现的频率生成词云（建议不少于500字，否则效果不明显）</p>
+            <textarea name="content" class="form-control" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+            <h4>为词云输入背景色范围</h4>
+            <label for="text-field">起始色：</label>
+            <br>
+            <input type="text" name="color1" id="text-field" class="form-control demo" value="#70c24a">
+            <br>
+            <label for="text-field">结束色：</label>
+            <br>
+            <input type="text" name="color2" id="text-field" class="form-control demo" value="#70c24a">
+        </div>
+
+        <div class="image_par">
+            <div class="image_l">
+                <h3>生成的词云：</h3>
+                <h2 style="color: red;">{{ msg }}</h2>
+                <img style="width: 720px;height: 640px"  class="img-thumbnail" src="{{ MEDIA_URL }}uploads/wordcloud/{{ name }}.jpg">
+            </div>
+            <div class="image_r">
+                <h3>示例：</h3>
+                <img style="width: 350px;"  class="img-thumbnail" src="{% static 'images/cy.jpg' %}">
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary btn-lg" value="生成词云">
+        <br>
+        <br>
+    </form>
+
+{#    <form action="{% url 'user:wordcloud' %}" method="post" enctype="multipart/form-data">#}
+{#    <h1>修改信息#}
+{#    </h1>#}
+{#    <label>#}
+{#        <span>名称 :</span>#}
+{#        <input id="name" type="text" name="username" value="{{ request.user.username }}" placeholder="Your Full Name" />#}
+{#    </label>#}
+{#    <label>#}
+{#        <span>邮箱:</span>#}
+{#        <input id="email" type="email" name="email" value="{{ request.user.email }}" placeholder="" />#}
+{#    </label>#}
+{#    <label>#}
+{#        <span>职业:</span>#}
+{#        <input id="job" type="text" name="job" value="{{ request.user.job }}" placeholder="" />#}
+{#    </label>#}
+{#    <label>#}
+{#        <span>头像:</span>#}
+{#        <img id="icon" src="{{ MEDIA_URL }}{{ request.user.icon }}" alt="">#}
+{#        <input id="name" type="file" name="icon" placeholder="" />#}
+{#    </label>#}
+{#    <label>#}
+{#        <span>简介 :</span>#}
+{#        <textarea id="description" type="text" name="description" placeholder="介绍自己" value="{{ request.user.description }}"></textarea>#}
+{#    </label>#}
+{##}
+{#    <label>#}
+{#        <span>&nbsp;</span>#}
+{#        <input type="submit" class="button" value="更新信息" />#}
+{#    </label>#}
+{#</form>#}
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+    <br>
+{% endblock %}
+
+{% block myjs %}
+
+{% endblock %}

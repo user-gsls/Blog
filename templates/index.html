@@ -1,0 +1,169 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+{% block title %}
+<title>博客主页</title>
+{% endblock %}
+{% block mycss %}
+
+<link href="{% static 'css/clock.css' %}" rel="stylesheet">
+<style>
+.clock{
+    margin: 15px auto;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:url({% static 'images/clock.png' %});
+    background-color: #091921;
+    background-size: cover;
+    border:4px solid #091921;
+    border-radius: 50%;
+    box-shadow:0 -10px 10px rgba(255,255,255,0.05),
+                inset 0 -10px 10px rgba(255,255,255,0.05),
+                0 10px 10px rgba(0,0,0,0.3),
+                inset 0 10px 10px rgba(0,0,0,0.3);
+}
+
+</style>
+{% endblock %}
+{% block content %}
+    <div class="picshow">
+        <ul>
+            <li><a href="{% url 'user:tag_articles' %}?tid=3"><i><img src="{% static 'images/sjjg.jpg' %}"></i>
+                <div class="font">
+                    <h3>数据结构</h3>
+                </div>
+            </a></li>
+            <li><a href="{% url 'user:tag_articles' %}?tid=2"><i><img src="{% static 'images/python.jpg' %}"></i>
+                <div class="font">
+                    <h3>Python</h3>
+                </div>
+            </a></li>
+            <li><a href="{% url 'user:tag_articles' %}?tid=7"><i><img src="{% static 'images/java.jpg' %}"></i>
+                <div class="font">
+                    <h3>Java</h3>
+                </div>
+            </a></li>
+            <li><a href="{% url 'user:tag_articles' %}?tid=8"><i><img src="{% static 'images/jsjzc.jpg' %}"></i>
+                <div class="font">
+                    <h3>计算机组成原理</h3>
+                </div>
+            </a></li>
+        </ul>
+    </div>
+    <article>
+        <div class="blogs">
+
+            {% for dararticle in page.object_list %}
+                <li><span class="blogpic"><a href="{% url 'article:detail' %}?id={{ dararticle.id }}"><img src="{{ MEDIA_URL }}{{ dararticle.image }}"></a></span>
+                    <h3 class="blogtitle"><a href="{% url 'article:detail' %}?id={{ dararticle.id }}">{{ dararticle.title }}</a></h3>
+                    <div class="bloginfo">
+                        <p>{{ dararticle.desc }}</p>
+                    </div>
+                    <div class="autor">
+                        <span class="au01"><a href="/">{{ dararticle.user.username }}</a></span>
+{#                        <a href="/" title="CSS3|Html5" target="_blank"class="classname">{{ dararticle.tags.all }}</a></span>#}
+                        <span class="dtime">{{ dararticle.date }}</span>
+                        <span class="viewnum">浏览（<a href="#">{{ dararticle.click_num }}</a>）</span>
+                        <span class="viewnum">点赞（<a href="#">{{ dararticle.love_num }}</a>）</span>
+                        <span class="readmore"><a href="{% url 'article:detail' %}?id={{ dararticle.id }}">阅读原文</a></span>
+                    </div>
+                </li>
+            {% endfor %}
+
+
+            <div class="pagelist">
+                <a href="{% url 'index' %}?page=1">首页</a>
+                <a href="{% url 'index' %}?page={% if page.has_previous %}{{ page.previous_page_number }}{% else %}1{% endif %}">上一页</a>
+            {% for page_number in page.paginator.page_range %}
+                    {% if page.number == page_number %}
+                        <b>{{ page_number }}</b>
+                    {% else %}
+                        <a href="{% url 'index' %}?page={{ page_number }}">{{ page_number }}</a>
+                    {% endif %}
+            {% endfor %}
+                <a href="{% url 'index' %}?page={% if page.has_next %}{{ page.next_page_number }}{% else %}{{ page.paginator.num_pages }}{% endif %}">下一页</a>
+                <a href="{% url 'index' %}?page={{ page.paginator.num_pages }}">尾页</a>
+            </div>
+
+
+        </div>
+        <div class="sidebar">
+            <div class="search">
+                <form action="{% url 'article:search' %}" method="get" name="searchform" id="searchform" role="search">
+                    {% csrf_token %}
+                    <input name="search_word" id="keyboard" class="input_text" value="请输入关键字"
+                           style="color: rgb(153, 153, 153);"
+                           onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}"
+                           onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+                    <input name="show" value="title" type="hidden">
+                    <input name="tempid" value="1" type="hidden">
+                    <input name="tbname" value="news" type="hidden">
+                    <input name="Submit" class="input_submit" value="搜索" type="submit">
+                </form>
+            </div>
+
+            <div class="cloud">
+                <h2 class="hometitle">标签云</h2>
+                <ul>
+                {% for tag in tags %}
+                    <a href="{% url 'user:tag_articles' %}?tid={{ tag.id }}">{{ tag }}</a>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="clock">
+                <div class="hour">
+                    <div class="hr" id="hr"></div>
+                </div>
+                <div class="min">
+                    <div class="mn" id="mn"></div>
+                </div>
+                <div class="sec">
+                    <div class="sc" id="sc"></div>
+                </div>
+            </div>
+            <div class="paihang">
+                <h2 class="hometitle">点击排行</h2>
+                <ul>
+                    {% for article in far_articles %}
+                        <li><b><a href="{% url 'article:detail' %}?id={{ article.id }}">{{ article.title }}</a></b>
+                            <p><a href="{% url 'article:detail' %}?id={{ article.id }}"><i><img src="{{ MEDIA_URL }}{{ article.image }}"></i>{{ article.desc }}</a></p>
+                        </li>
+
+                    {% endfor %}
+
+
+
+                </ul>
+            </div>
+
+
+        </div>
+    </article>
+    <div class="blank"></div>
+{% endblock content %}
+
+{% block myjs %}
+    <script type="text/javascript">
+    const deg = 6;
+    const hr = document.querySelector('#hr');
+    const mn = document.querySelector('#mn');
+    const sc = document.querySelector('#sc');
+
+    setInterval(() =>{
+        let day = new Date();
+        let hh = day.getHours() * 30;
+        let mm = day.getMinutes() * deg;
+        let ss = day.getSeconds() * deg;
+
+        hr.style.transform = `rotateZ(${(hh)+(mm/12)}deg)`;
+        mn.style.transform = `rotateZ(${mm}deg)`;
+        sc.style.transform = `rotateZ(${ss}deg)`;
+    })
+
+
+
+</script>
+{% endblock %}
+

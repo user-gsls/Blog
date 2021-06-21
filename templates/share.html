@@ -1,0 +1,128 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+
+{% block title %}
+<title>小程序</title>
+{% endblock %}
+
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/share/base.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/share/demo.css' %}" />
+<style>
+.n1{
+    background: #3498db;
+    font-family: "黑体";
+}
+.n2{
+    background: #84c9f6;
+    font-family: "黑体";
+}
+</style>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+     <div class="carousel">
+     <h1 class="t_nav"><span>好咖啡要和朋友一起品尝，希望在这里你能找到适合自己的咖啡！ </span>
+         <a href="{% url 'home' %}" class="n1">网站首页</a>
+         <a href="#" class="n2">小程序</a>
+     </h1>
+      <!-- COIDEA:demo:slider:for START -->
+      <div class="slider slider-for">
+        <div class="item" style="background-image: url({% static 'images/overturn.jpg' %})"></div>
+        <div class="item" style="background-image: url({% static 'images/cy.jpg' %})"></div>
+        <div class="item" style="background-image: url({% static 'images/Lemon.jpg' %}"></div>
+        <div class="item" style="background-image: url({% static 'images/ball.jpg' %})"></div>
+
+      </div>
+      <!-- COIDEA:demo:slider:for END -->
+
+      <!-- COIDEA:demo:slider:nav START -->
+      <div class="slider slider-nav">
+        <div class="nav-item">
+          <div class="content" style="background-image: url({% static 'images/overturn.jpg' %})">
+
+            <div class="number">01</div>
+            <div class="body">
+              <div class="location">鼠标点击</div>
+              <div class="headline">翻转特效<br>“「 炫酷。。。。。 」”</div>
+              <a href="{% url 'user:overturn' %}" target="_blank">
+                <div class="link">Play</div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <div class="nav-item">
+          <div class="content" style="background-image: url({% static 'images/cy.jpg' %})">
+
+            <div class="number">02</div>
+            <div class="body">
+              <div class="location">“关键词”可视化</div>
+              <div class="headline">WordCloud<br>词云</div>
+              <a href="{% url 'user:wordcloud' %}">
+                <div class="link">Play</div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <div class="nav-item">
+          <div class="content" style="background-image: url({% static 'images/Lemon.jpg' %})">
+
+            <div class="number">03</div>
+            <div class="body">
+              <div class="location">“「 将生活带给你的如柠檬的酸楚 <br>酿成犹如柠檬汽水味般的甘甜 」”</div>
+              <div class="headline">音乐播放器</div>
+              <a href="{% url 'user:music' %}" target="_blank">
+                <div class="link">Play</div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <div class="nav-item">
+          <div class="content" style="background-image: url({% static 'images/ball.jpg' %})">
+
+            <div class="number">04</div>
+            <div class="body">
+              <div class="location">“「 像水波一样扩散0.0 」”</div>
+              <div class="headline">波纹小球</div>
+              <a href="{% url 'user:ball' %}" target="_blank">
+                <div class="link">Play</div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- COIDEA:demo:slider:nav END -->
+
+      <!-- COIDEA:demo:navigation START -->
+      <div class="navigation">
+        <button class="forward"> > </button>
+        <button class="back"> < </button>
+      </div>
+      <!-- COIDEA:demo:navigation END -->
+
+    </div>
+
+
+
+{% endblock %}
+
+
+
+
+{% block myjs %}
+<script src="{% static 'js/share/jquery-2.1.1.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+    <script src="{% static 'js/share/demo.js' %}"></script>
+{% endblock %}
+

@@ -1,0 +1,75 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+{% block mycss %}
+    <style>
+
+    .blogs{
+        width:100%;
+        margin:0 auto;
+    }
+    .picshow li {
+    width: 100%;
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+    </style>
+
+{% endblock %}
+{% block content %}
+    <div class="picshow">
+        <ul>
+            <li><a href="#"><i><img src="{% static 'images/xuexi.png' %}"></i>
+                <div class="font">
+                    <h3>{{ tag_name }}</h3>
+                </div>
+            </a></li>
+        </ul>
+    </div>
+<article>
+    <h1 class="t_nav"><span>不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。 </span><div style="display: inline-block;padding: 0px 15px;" class="n1">{{ search_word }}的搜索结果</div></h1>
+  <div class="blogs">
+    <div class="mt20"></div>
+    {% if error_msg %}
+        <h3>{{ error_msg }}</h3>
+    {% endif %}
+
+    {% for article in articles %}
+        <li><span class="blogpic"><a href="{% url 'article:detail' %}?id={{ article.id }}"><img src="{{ MEDIA_URL }}{{ article.image }}"></a></span>
+            <h3 class="blogtitle"><a href="{% url 'article:detail' %}?id={{ article.id }}">{{ article.title }}</a></h3>
+            <div class="bloginfo">
+                <p>{{ article.desc }}</p>
+            </div>
+{#            <div class="autor"><span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">CSS3|Html5</a></span>#}
+            <div class="autor">
+                <span class="dtime">{{ article.date }}</span>
+                <span class="viewnum">浏览（<a href="#">{{ article.click_num }}</a>）</span>
+                <span class="viewnum">点赞（<a href="#">{{ article.love_num }}</a>）</span>
+                <span class="readmore"><a href="{% url 'article:detail' %}?id={{ article.id }}">阅读原文</a></span>
+            </div>
+        </li>
+      {% endfor %}
+    </div>
+
+
+
+
+{#    <div class="pagelist">#}
+{#                <a href="{% url 'article:search' %}?tid={{ tid }}&page=1">首页</a>#}
+{#                <a href="{% url 'article:search' %}?tid={{ tid }}&page={% if page.has_previous %}{{ page.previous_page_number }}{% else %}1{% endif %}">上一页</a>#}
+{#            {% for page_number in page.paginator.page_range %}#}
+{#                    {% if page.number == page_number %}#}
+{#                        <b>{{ page_number }}</b>#}
+{#                    {% else %}#}
+{#                        <a href="{% url 'article:search' %}?tid={{ tid }}&page={{ page_number }}">{{ page_number }}</a>#}
+{#                    {% endif %}#}
+{#            {% endfor %}#}
+{#                <a href="{% url 'article:search' %}?tid={{ tid }}&page={% if page.has_next %}{{ page.next_page_number }}{% else %}{{ page.paginator.num_pages }}{% endif %}">下一页</a>#}
+{#                <a href="{% url 'article:search' %}?tid={{ tid }}&page={{ page.paginator.num_pages }}">尾页</a>#}
+{#            </div>#}
+{##}
+{#  </div>#}
+
+</article>
+{% endblock content %}

@@ -1,0 +1,123 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    {% block title %}
+
+    {% endblock %}
+    <meta name="keywords" content="个人博客,趁早个人博客,个人博客模板,趁早" />
+    <meta name="description" content="趁早个人博客，一只小白学习生活" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'css/m.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pinglun.css' %}" rel="stylesheet">
+    <script src="{% static 'js/modernizr.js' %}js/modernizr.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/index2.css' %}" />
+{#    <script src="{% static 'js/home/unified2.js' %}" type="text/javascript" charset="utf-8"></script>#}
+
+    <script>
+window.onload = function ()
+{
+	var oH2 = document.getElementsByTagName("h2")[0];
+	var oUl = document.getElementsByTagName("ul")[0];
+	oH2.onclick = function ()
+	{
+		var style = oUl.style;
+		style.display = style.display == "block" ? "none" : "block";
+		oH2.className = style.display == "block" ? "open" : ""
+	}
+}
+</script>
+<style>
+        body{
+            background: #f7f7f7;
+        }
+        .hc-logobox{
+            font-size: 25px;
+            margin: 10px;
+            color: white;
+            font-family: "华文琥珀";
+        }
+    </style>
+
+    {% block mycss %}
+
+    {% endblock %}
+
+</head>
+<body>
+<header>
+<div class="tophead">
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top hc-top-nd">
+			<div class="container-fluid">
+                <div class="hc-logobox" style="color: #0E2231">
+                    Fragment Blog
+                </div>
+
+				<div class="navbar-right hc-contact p768">
+                    {% if request.user.is_authenticated %}
+					    <a href="{% url 'user:user_center' %}">个人中心</a>
+					    <a href="{% url 'user:logout' %}">注销</a>
+                    {% else %}
+                        <a href="{% url 'user:login' %}">登录</a>
+                    {% endif %}
+				</div>
+				<div id="oiBtn" class="hc-oi p1100">
+					<em></em>
+				</div>
+
+				<ul id="navBox" class="nav navbar-nav navbar-right hc-navbox">
+
+					<li>
+						<a class="nav-on" href="{% url 'home' %}">Home</a>
+						<a class="nav-off" href="{% url 'home' %}">首页</a>
+					</li>
+					<li>
+						<a class="nav-on" href="{% url 'index' %}">Blog</a>
+						<a class="nav-off" href="{% url 'index' %}">博客主页</a>
+					</li>
+					<li>
+						<a class="nav-on" href="{% url 'about_myself' %}">Me</a>
+						<a class="nav-off" href="{% url 'about_myself' %}">关于我</a>
+					</li>
+					<li>
+						<a class="nav-on" href="{% url 'article:write' %}">Write</a>
+						<a class="nav-off" href="{% url 'article:write' %}">写博客</a>
+					</li>
+					<li>
+						<a class="nav-on" href="{% url 'share' %}">Entertainment</a>
+						<a class="nav-off" href="{% url 'share' %}">小程序</a>
+					</li>
+
+
+
+
+				</ul>
+			</div>
+
+  </nav>
+</div>
+</header>
+
+{% block content %}
+{% endblock content %}
+
+<footer>
+  <p>Design by  趁早个人博客 蜀ICP备11002373号-1</p>
+</footer>
+<script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<script type="text/javascript"color="0,0,0"opacity="0.6"count="99" zIndex="-1" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+</body>
+
+{% block myjs %}
+
+{% endblock %}
+<script src="{% static 'js/nav.js' %}"></script>
+
+</html>

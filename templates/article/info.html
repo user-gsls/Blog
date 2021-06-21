@@ -1,0 +1,228 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+{% block title %}
+<title>博客详情</title>
+{% endblock %}
+
+{% block mycss %}
+<link href="{% static 'css/clock.css' %}" rel="stylesheet">
+
+<style>
+.test{
+            height: auto;
+            margin: 0 2%;
+        }
+.share{
+    padding: 0;
+}
+.clock{
+    margin: 15px auto;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:url({% static 'images/clock.png' %});
+    background-color: #091921;
+    background-size: cover;
+    border:4px solid #091921;
+    border-radius: 50%;
+    box-shadow:0 -10px 10px rgba(255,255,255,0.05),
+                inset 0 -10px 10px rgba(255,255,255,0.05),
+                0 10px 10px rgba(0,0,0,0.3),
+                inset 0 10px 10px rgba(0,0,0,0.3);
+}
+
+</style>
+
+
+{% endblock %}
+{% block content %}
+<article>
+  <h1 class="t_nav"><span>您现在的位置是：首页 > 博客详情</span><a href="{% url 'home' %}" class="n1">网站首页</a><a href="#" class="n2">慢生活</a></h1>
+  <div class="infos">
+    <div class="newsview">
+      <h3 class="news_title">{{ article.title }}</h3>
+      <div class="news_author"><span class="au01">{{ article.user.username }}</span><span class="au02">{{ article.date }}</span><span class="au03">共<b><script src="/e/public/ViewClick/?classid=5&amp;id=816&amp;addclick=1"></script>{{ article.click_num }}</b>人围观</span></div>
+      <div class="tags">
+          {% for tag in article.tags.all %}
+          <div>{{ tag.name }}</div>
+          {% endfor %}
+      </div>
+      <div class="news_about"><strong>简介</strong>{{ article.desc }}</div>
+      <div class="news_infos"> {{ article.content | safe }}
+      </div>
+    </div>
+    <div class="news_pl">
+      <h2>文章评论</h2>
+      <ul>
+        <div class="gbko"> </div>
+      </ul>
+    </div>
+
+
+
+<div class="test">
+    <div class="share"><p>共有评论数：{{ comments.count }}条</p></div>
+    <div lang="en-US" class="gitment-container gitment-comments-container">
+
+        <ul class="gitment-comments-list">
+            {% for comment in comments %}
+            <li class="gitment-comment">
+                <a class="gitment-comment-avatar">
+                    <img class="gitment-comment-avatar-img" src="{{ MEDIA_URL }}{{ comment.image }}">
+                </a>
+                <div class="gitment-comment-main">
+                    <div class="gitment-comment-header">
+                        <a class="gitment-comment-name">
+                            {{ comment.nickname }}
+                        </a>
+                        <span>{{ comment.date }}</span>
+
+
+                    </div>
+                    <div class="gitment-comment-body gitment-markdown"><p>{{ comment.content }}</p></div>
+                </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div lang="en-US" class="gitment-container gitment-editor-container">
+        <div class="gitment-editor-main">
+            <div class="gitment-editor-header">
+                <nav class="gitment-editor-tabs">
+                    <button class="gitment-editor-tab gitment-selected">编辑</button>
+                </nav>
+            </div>
+            <div class="gitment-editor-body">
+                <div class="gitment-editor-write-field">
+                    <textarea name="saytext" type="text" id="saytext" placeholder="你想说些什么" title="Login to Comment"></textarea>
+                </div>
+                <div class="gitment-editor-preview-field gitment-hidden">
+                    <div class="gitment-editor-preview gitment-markdown"></div>
+                </div>
+            </div>
+        </div>
+        <div class="gitment-editor-footer">
+            <button id="btncomment" class="gitment-editor-submit" title="Login to Comment">评论</button>
+        </div>
+    </div>
+</div>
+
+
+{#    <div class="nextinfo">#}
+{#      <p>上一篇：<a href="{% url 'article:detail' %}?id={{ article.id |add:'-1' }}">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></p>#}
+{#      <p>下一篇：<a href="{% url 'article:detail' %}?id={{ article.id |add:'1' }}">返回列表</a></p>#}
+{#    </div>#}
+    <div class="otherlink">
+      <h2>相关文章</h2>
+      <ul>
+          {% for title in list_about %}
+               <li><a href="{% url 'article:detail' %}?id={{ title.id  }}">{{ title.title }}</a></li>
+          {% endfor %}
+
+
+      </ul>
+    </div>
+
+  </div>
+  <div class="sidebar">
+    <div class="about">
+      <div class="avatar"> <img src="{{ MEDIA_URL }}{{ author.icon }}" alt=""> </div>
+      <p class="abname">作者 | {{ author.username }}</p>
+      <p class="abposition">{{ author.job }}</p>
+      <div class="abtext"> {{ author.description }} </div>
+{#        <p class="abposition"><a style="color: #0dd0ce;padding-bottom: 10px;" href="{% url "user:user_change" %}">修改个人资料>></a></p>#}
+    </div>
+  <div class="clock">
+                <div class="hour">
+                    <div class="hr" id="hr"></div>
+                </div>
+                <div class="min">
+                    <div class="mn" id="mn"></div>
+                </div>
+                <div class="sec">
+                    <div class="sc" id="sc"></div>
+                </div>
+            </div>
+  <div class="cloud">
+                <h2 class="hometitle">标签云</h2>
+                <ul>
+                {% for tag in tags_all %}
+                    <a href="{% url 'user:tag_articles' %}?tid={{ tag.id }}">{{ tag }}</a>
+                {% endfor %}
+                </ul>
+    </div>
+    <div class="lmnav">
+      <h2 class="hometitle">栏目导航</h2>
+      <ul class="navbor">
+        <li><a href="{% url 'about_myself' %}">关于我</a></li>
+           <li><a href="{% url 'share' %}">驿站</a></li>
+        <li>学无止境
+          <ul>
+            <li><a href="{% url 'user:tag_articles' %}?tid=2">Python</a></li>
+            <li><a href="{% url 'user:tag_articles' %}?tid=3">数据结构</a></li>
+            <li><a href="{% url 'user:tag_articles' %}?tid=4">Django</a></li>
+       </ul>
+        </li>
+
+      </ul>
+    </div>
+    <div class="paihang">
+                <h2 class="hometitle">点击排行</h2>
+                <ul>
+                    {% for article in far_articles %}
+                        <li><b><a href="{% url 'article:detail' %}?id={{ article.id }}">{{ article.title }}</a></b>
+                            <p><a href="{% url 'article:detail' %}?id={{ article.id }}"><i><img src="{{ MEDIA_URL }}{{ article.image }}"></i>{{ article.desc }}</a></p>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+  </div>
+</article>
+{% endblock content %}
+
+{% block myjs %}
+    <script src='{% static 'js/jquery-2.2.3.min.js' %}'></script>
+
+    <script>
+    $(function () {
+        //得到按钮对象
+        $('#btncomment').click(function () {
+            //从文本框中取值
+            var saytext = $('#saytext').val();
+            //发出请求
+            $.getJSON('{% url 'article:comment' %}',{saytext:saytext,aid:'{{ article.id }}'},function (data) {
+                if(data.status==1){
+                    window.location.href='{% url 'article:detail' %}?id={{ article.id }}'
+                }
+            })
+
+        })
+    })
+    </script>
+    <script type="text/javascript">
+    const deg = 6;
+    const hr = document.querySelector('#hr');
+    const mn = document.querySelector('#mn');
+    const sc = document.querySelector('#sc');
+
+    setInterval(() =>{
+        let day = new Date();
+        let hh = day.getHours() * 30;
+        let mm = day.getMinutes() * deg;
+        let ss = day.getSeconds() * deg;
+
+        hr.style.transform = `rotateZ(${(hh)+(mm/12)}deg)`;
+        mn.style.transform = `rotateZ(${mm}deg)`;
+        sc.style.transform = `rotateZ(${ss}deg)`;
+    })
+
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,390 @@
+			body{
+				margin: 0;
+				background:#464853;
+			}
+			.glyphicon {
+				font-size: 14px;
+            }
+            .columns{
+            	opacity: 0;
+            	z-index: -999;
+            }
+
+			@keyframes bgrun{
+				0%{
+					background-position: 0 0;
+				}
+				100%{
+					background-position: -1920px 0;
+				}
+			}
+
+			#x.running{
+				left: 50%;
+				animation: run1 .8s steps(7,end) infinite;
+			}
+			@keyframes bx{
+				0%{
+					transform: scale(.8);
+				}
+				100%{
+					transform: scale(.8);
+				}
+			}
+			@keyframes run1{
+				0%{
+					background-position: 0 0;
+				}
+				100%{
+					background-position: -1600px 0;	
+				}
+			}
+
+			@keyframes run2{
+				0%{
+					background-position:0 0;
+				}
+				100%{
+					background-position: -3840px 0;
+				}
+			}
+			@keyframes suof{
+				0%{
+					transform: scale(1.5);
+					opacity: 0;
+				}
+				100%{
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+
+			@keyframes run3{
+				0%{
+					background-position:0 0;
+				}
+				100%{
+					background-position: -3840px 0;
+				}
+			}
+
+			@keyframes run4{
+				0%{
+					background-position:0 0;
+				}
+				100%{
+					background-position: -3840px 0;
+				}
+			}
+			#shine{
+				width:1637px ;
+				height: 897px;
+				top: 0;
+				left: 50%;
+				margin-left: -818.5px;
+				position: absolute;
+				z-index: 11;
+				animation: gg linear 1s forwards;
+			}
+			@keyframes gg{
+				0%{
+					opacity: 0;
+				}
+				100%{
+					opacity: 1;
+				}
+			}
+			.cl{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 0;
+			}
+
+			@keyframes aurora{
+				0%{opacity: 0;}
+				14%{opacity: 1;}
+				28%{opacity: 0;}
+				100%{opacity: 0;}
+			}
+			#mid{
+				/*height: 1000px*/
+				width:60% ;
+				position: absolute;
+				left: 30%;
+				top: 40%;
+				margin: -5em 0 0 -12em;
+				z-index: 13;
+				opacity: 0;
+				animation: hid .5s ease-in .2s forwards;
+			}
+			#logo{
+				width: 7em;
+				height: 7em;
+				position: relative;
+				margin: 0 auto 1em;
+			}
+			#logo_icon{
+				width: 100%;
+				height: 100%;
+				background: url(../img/8.png) no-repeat;
+				background-size: 168em 7em;
+				animation: logo_1 1.6s steps(23,end) .8s forwards;
+			}
+			@keyframes logo_1{
+				0%{
+					background-position: 0em 0em;
+				}
+				100%{
+					background-position: -161em 0;
+				}
+			}
+			#title{
+				width: 13.204em;
+				height: 4.444em;
+				/*background: url(../img/bg-title.png) no-repeat;*/
+				background-size: 100%;
+				margin: 0 auto 1em;
+			}
+			@keyframes hid{
+				0%{
+					opacity: 0;
+					transform: translateY(0);
+				}
+				to{
+					opacity: 1;
+					transform: translateY(-40%);
+				}
+			}
+
+			@keyframes eo1{
+				0%{
+					background-position: 0 0;
+					left: -4%;
+				}
+				1.38888889%{
+					background-position: -200px 0;
+					left: -2.25%;
+				}
+				2.37777778%{
+					background-position: -400px 0;
+					left: -0.5%;
+				}
+				4.16666667%{
+					background-position: -600px 0;
+					left: 1.25%;
+				}
+				 5.55555556% {
+				    background-position: -800px 0;
+				    left: 3%;
+				  }
+				  6.94444444% {
+				    background-position: -1000px 0;
+				    left: 4.75%;
+				  }
+				  8.33333333% {
+				    background-position: -1200px 0;
+				    left: 6.5%;
+				  }
+				  9.72222222% {
+				    background-position: -1400px 0;
+				    left: 8.25%;
+				  }
+				  11.11111111% {
+				    background-position: -1600px 0;
+				    left: 10%;
+				  }
+				  /*第二个完步开始，时间间隔1.66666667%，间隔一个熊，位置间隔1.5%。速度比第一个完步慢。*/
+				  11.11111111% {
+				    background-position: 0em 0;
+				    left: 10%;
+				  }
+				  12.77777778% {
+				    background-position: -200px 0;
+				    left: 11.5%;
+				  }
+				  14.44444444% {
+				    background-position: -400px 0;
+				    left: 13%;
+				  }
+				  16.11111111% {
+				    background-position: -600px 0;
+				    left: 14.5%;
+				  }
+				  17.77777778% {
+				    background-position: -800px 0;
+				    left: 16%;
+				  }
+				  19.44444444% {
+				    background-position: -1000px 0;
+				    left: 17.5%;
+				  }
+				  21.11111111% {
+				    background-position: -1200px 0;
+				    left: 19%;
+				  }
+				  22.77777778% {
+				    background-position: -1400px 0;
+				    left: 20.5%;
+				  }
+				  24.44444444% {
+				    background-position: -1600px 0;
+				    left: 22%;
+				  }
+				  /*第三个完步开始，时间间隔1.94444444%，间隔一个熊，位置间隔1.25%。速度比第二个完步慢。*/
+				  24.44444444% {
+				    background-position: 0em 0;
+				    left: 22%;
+				  }
+				  26.38888889% {
+				    background-position: -200px 0;
+				    left: 23.25%;
+				  }
+				  28.33333333% {
+				    background-position: -400px 0;
+				    left: 24.5%;
+				  }
+				  30.27777778% {
+				    background-position: -600px 0;
+				    left: 25.75%;
+				  }
+				  32.22222222% {
+				    background-position: -800px 0;
+				    left: 27%;
+				  }
+				  34.16666667% {
+				    background-position: -1000px 0;
+				    left: 28.25%;
+				  }
+				  36.11111111% {
+				    background-position: -1200px 0;
+				    left: 29.5%;
+				  }
+				  38.05555556% {
+				    background-position: -1400px 0;
+				    left: 30.75%;
+				  }
+				  40% {
+				    background-position: -1600px 0;
+				    left: 32%;
+				  }
+				  /*第四个完步开始，时间间隔2.22222222%，间隔一个熊，位置间隔1%。速度比第三个完步慢。*/
+				  40% {
+				    background-position: 0em 0;
+				    left: 32%;
+				  }
+				  42.22222222% {
+				    background-position: -200px 0;
+				    left: 33%;
+				  }
+				  44.44444444% {
+				    background-position: -400px 0;
+				    left: 34%;
+				  }
+				  46.66666667% {
+				    background-position: -600px 0;
+				    left: 35%;
+				  }
+				  48.88888889% {
+				    background-position: -800px 0;
+				    left: 36%;
+				  }
+				  51.11111111% {
+				    background-position: -1000px 0;
+				    left: 37%;
+				  }
+				  53.33333333% {
+				    background-position: -1200px 0;
+				    left: 38%;
+				  }
+				  55.55555556% {
+				    background-position: -1400px 0;
+				    left: 39%;
+				  }
+				  57.77777778% {
+				    background-position: -1600px 0;
+				    left: 40%;
+				  }
+				  /*第五个完步开始，时间间隔2.5%，间隔一个熊，位置间隔0.75%。速度比第四个完步慢。*/
+				  57.77777778% {
+				    background-position: 0em 0;
+				    left: 40%;
+				  }
+				  60.27777778% {
+				    background-position: -200px 0;
+				    left: 40.75%;
+				  }
+				  62.77777778% {
+				    background-position: -400px 0;
+				    left: 41.5%;
+				  }
+				  65.27777778% {
+				    background-position: -600px 0;
+				    left: 42.25%;
+				  }
+				  67.77777778% {
+				    background-position: -800px 0;
+				    left: 43%;
+				  }
+				  70.27777778% {
+				    background-position: -1000px 0;
+				    left: 43.75%;
+				  }
+				  72.77777778% {
+				    background-position: -1200px 0;
+				    left: 44.5%;
+				  }
+				  75.27777778% {
+				    background-position: -1400px 0;
+				    left: 45.25%;
+				  }
+				  77.77777778% {
+				    background-position: -1600px 0;
+				    left: 46%;
+				  }
+				  /*第六个完步开始，时间间隔逐步增多2.77777776%，2.77777777%等，间隔一个熊，位置间隔0.5%。速度比第五个完步慢。逐步慢下来*/
+				  77.77777778% {
+				    background-position: 0em 0;
+				    left: 46%;
+				  }
+				  80.55555556% {
+				    background-position: -200px 0;
+				    left: 46.5%;
+				  }
+				  83.33333333% {
+				    background-position: -400px 0;
+				    left: 47%;
+				  }
+				  86.11111111% {
+				    background-position: -600px 0;
+				    left: 47.5%;
+				  }
+				  88.88888889% {
+				    background-position: -800px 0;
+				    left: 48%;
+				  }
+				  91.66666667% {
+				    background-position: -1000px 0;
+				    left: 48.5%;
+				  }
+				  94.44444444% {
+				    background-position: -1200px 0;
+				    left: 49%;
+				  }
+				  97.22222222% {
+				    background-position: -1400px 0;
+				    left: 49.5%;
+				  }
+				  100% {
+				    background-position: -1600px 0;
+				    left: 50%;
+				  }
+			}
+#reportTable{
+	background-color: #fff;
+}
+#reportTable thead{
+	background-color: #fff;
+}

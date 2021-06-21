@@ -1,0 +1,588 @@
+{#{% extends 'base.html' %}#}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/reset.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/index2.css' %}" />
+    <script src="http://www.jq22.com/jquery/jquery-1.7.1.js"></script>
+    <script src="{% static 'js/home/unified2.js' %}" type="text/javascript" charset="utf-8"></script>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <!--====== Line Icons css ======-->
+    <link rel="stylesheet" href="{% static 'css/home/LineIcons.css' %}">
+
+    <!--====== Magnific Popup css ======-->
+    <link rel="stylesheet" href="{% static 'css/home/magnific-popup.css' %}">
+
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="{% static 'css/home/slick.css' %}">
+
+    <!--====== Animate css ======-->
+    <link rel="stylesheet" href="{% static 'css/home/animate.css' %}">
+
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="{% static 'css/home/default.css' %}">
+
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="{% static 'css/home/style.css' %}">
+    <!--====== 图标库 ======-->
+{#    <link href="https://cdn.staticfile.org/ionic/1.3.2/css/ionic.css" rel="stylesheet">#}
+    <style>
+        body{
+            height: 1500px;
+        }
+        .hc-logobox{
+            font-size: 25px;
+            margin: 10px;
+            color: white;
+            font-family: "华文琥珀";
+        }
+
+
+        .head1{
+            margin: 0px 0px 0px 200px;
+        }
+        .head2{
+            margin: 0px 0px 0px 290px;
+        }
+        .head3{
+            margin: 0px 0px 0px 200px;
+        }
+        ol{
+            position: relative;
+            display: table;
+            margin: 0 auto 0;
+            top: 90vh;
+            z-index: 10;
+        }
+        .icon1{
+            margin: 0 auto;
+        }
+        .main img{
+            width: 555px;
+            height: 310px;
+        }
+        .blog1{
+
+        }
+        .receipt-outline{
+            color: #00BCD4;
+        }
+        .image{
+            height: 300px;
+            width: 320px;
+        }
+        .text1{
+            height: 250px;
+        }
+
+
+    </style>
+
+
+{#    <link href="{% static 'css/home/style.css' %}" rel="stylesheet" />#}
+    <!--====== Bootstrap css ======-->
+{#    <link rel="stylesheet" href="{% static 'css/home/bootstrap.min.css' %}">#}
+
+
+</head>
+<body>
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top hc-top-up">
+			<div class="container-fluid">
+{#				<a href="javascript:void(0)" class="hc-logobox">#}
+{#					<img src="{% static 'images/blog1.PNG' %}" />#}
+{#				</a>#}
+                <div class="hc-logobox">
+                    Fragment Blog
+                </div>
+
+				<div class="navbar-right hc-contact p768">
+                    {% if request.user.is_authenticated %}
+					    <a href="{% url 'user:user_center' %}">个人中心</a>
+					    <a href="{% url 'user:logout' %}">注销</a>
+                    {% else %}
+                        <a href="{% url 'user:login' %}">登录</a>
+                    {% endif %}
+				</div>
+				<div id="oiBtn" class="hc-oi p1100">
+					<em></em>
+				</div>
+
+				<ul id="navBox" class="nav navbar-nav navbar-right hc-navbox">
+
+					<li>
+						<a class="nav-on" href="{% url 'home' %}">Home</a>
+						<a class="nav-off" href="{% url 'home' %}">首页</a>
+					</li>
+					<li>
+						<a class="nav-on" href="{% url 'index' %}">Blog</a>
+						<a class="nav-off" href="{% url 'index' %}">博客主页</a>
+					</li>
+					<li>
+						<a class="nav-on" href="{% url 'about_myself' %}">Me</a>
+						<a class="nav-off" href="{% url 'about_myself' %}">关于我</a>
+					</li>
+					<li>
+						<a class="nav-on" href="{% url 'article:write' %}">Write</a>
+						<a class="nav-off" href="{% url 'article:write' %}">写博客</a>
+					</li>
+					<li>
+						<a class="nav-on" href="{% url 'share' %}">Entertainment</a>
+						<a class="nav-off" href="{% url 'share' %}">小程序</a>
+					</li>
+
+
+
+				</ul>
+			</div>
+
+		</nav>
+{#    轮播图#}
+    <section class="hc-banner">
+			<ol></ol>
+			<ul class="banner">
+				<li class="hc-bannerbg" style="background-image: url({% static 'images/banner12.gif' %});">
+                    <a href="#">
+					<div class="hc-fly">
+						<img class="fly-one" src="{% static 'images/home_1.png' %}" />
+						<div class="fly-two">
+
+						</div>
+						<p class="fly-three">Every Moment Of Study And Life</p>
+						<p class="fly-four">博客：学习生活 点点滴滴</p>
+
+					</div>
+                    </a>
+				</li>
+				<li class="hc-bannerbg" style="background-image: url({% static 'images/banner11.jpg' %});">
+                    <a href="#">
+					<div class="hc-fly">
+						<img class="fly-one" src="{% static 'images/home_2.png' %}" />
+						<div class="fly-two">
+
+						</div>
+						<p class="fly-three">Life is Short</p>
+						<p class="fly-four">"人生苦短 我选Python"</p>
+
+					</div>
+                    </a>
+				</li>
+                <li class="hc-bannerbg" style="background-image: url({% static 'images/banner12.jpg' %});">
+                    <a href="#">
+					<div class="hc-fly">
+						<img class="fly-one" src="{% static 'images/home_5.png' %}" />
+						<div class="fly-two">
+
+						</div>
+						<p class="fly-three">Data Structures and Algorithm Analysis</p>
+						<p class="fly-four">高效管理数据</p>
+
+					</div>
+                    </a>
+				</li>
+                <li class="hc-bannerbg" style="background-image: url({% static 'images/banner20.jpg' %});">
+                    <a href="#">
+					<div class="hc-fly">
+						<img class="fly-one" src="{% static 'images/home_4.png' %}" />
+						<div class="fly-two">
+
+						</div>
+						<p class="fly-three">Enjoy life</p>
+						<p class="fly-four">享受生活</p>
+
+					</div>
+                    </a>
+				</li>
+			</ul>
+		</section>
+
+
+    <section id="about" class="about-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="head1 col-xl-6 col-lg-8">
+                    <div class="head2 about-image text-center wow fadeInUp" data-wow-duration="1.5s" data-wow-offset="100">
+                        <img src="{% static 'images/home/mountain.svg' %}" alt="services">
+                    </div>
+                    <div class="section-title text-center mt-30 pb-40">
+                        <h4 class="title wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.6s">人生需要不断的勇攀高峰 </h4>
+                        <br>
+                        <p class="text wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">成绩的获得不是结局，而恰恰意味着下一段努力的开始。只有那些始终渴望向着更高层次攀登，并且愿意脚踏实地为之付出的人，才能够最大限度释放自身的潜能，这段一往无前的历程，就是有滋有味的人生。</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+
+        </div> <!-- container -->
+    </section>
+
+
+    <!--====== portfolio PART START ======-->
+
+    <section id="portfolio" class="portfolio-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="head2 col-lg-6">
+                    <div class="section-title text-center pb-20">
+                        <h3 class="title">My Blog</h3>
+                        <p class="text">在学习路上遇到的问题、困难和感受</p>
+                    </div> <!-- row -->
+                </div>
+            </div> <!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portfolio-menu pt-30 text-center">
+                        <ul>
+                            <li data-filter="*" class="active">Python</li>
+                            <li data-filter=".branding-3">数据结构</li>
+                        </ul>
+                    </div> <!-- portfolio menu -->
+                </div>
+            </div> <!-- row -->
+            <div class="row grid">
+                <div class="blog1 col-lg-6 col-sm-6 branding-3 planning-3">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                        <div class="main portfolio-image">
+                            <img src="{% static 'images/xsjz.jpg' %}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+
+                                    <div class="icon1 portfolio-icon">
+                                        <a href="{% url 'article:detail' %}?id=14"><ion-icon name="receipt-outline"></ion-icon></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">稀疏矩阵</a></h4>
+                            <p class="text">稀疏矩阵利用三元组进行加、减、转置！</p>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="blog1 col-lg-6 col-sm-6 marketing-3 research-3">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.4s">
+                        <div class="main portfolio-image">
+                            <img src="{% static 'images/django.jpg' %}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+
+                                    <div class="icon1 portfolio-icon">
+                                        <a href="{% url 'article:detail' %}?id=4"><ion-icon name="receipt-outline"></ion-icon></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">django--认证</a></h4>
+                            <p class="text">djiango本身自带一套authenticate的认证</p>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="blog1 col-lg-6 col-sm-6 branding-3 marketing-3">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.7s">
+                        <div class="main portfolio-image">
+                            <img src="{% static 'images/xxb.jpg' %}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+
+                                    <div class="icon1 portfolio-icon">
+                                        <a href="{% url 'article:detail' %}?id=16"><ion-icon name="receipt-outline"></ion-icon></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">线性表的操作</a></h4>
+                            <p class="text">用算法将该线性链表分割为3个循环链表， 其中每个循环链表表示的线性表中均只含有一类字符</p>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+                <div class="blog1 col-lg-6 col-sm-6 planning-3 research-3">
+                    <div class="single-portfolio mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.9s">
+                        <div class="main portfolio-image">
+                            <img src="{% static 'images/xha.PNG' %}" alt="">
+                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                <div class="portfolio-content">
+
+                                    <div class="icon1 portfolio-icon">
+                                        <a href="{% url 'article:detail' %}?id=1"><ion-icon name="receipt-outline"></ion-icon></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-text">
+                            <h4 class="portfolio-title"><a href="#">django创建admin</a></h4>
+                            <p class="text">django基础!</p>
+                        </div>
+                    </div> <!-- single portfolio -->
+                </div>
+
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== portfolio PART ENDS ======-->
+
+    <!--====== PRINICNG STYLE EIGHT START ======-->
+
+    <section id="pricing" class="pricing-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="head2 col-lg-6">
+                    <div class="section-title text-center pb-20">
+                        <h3 class="title">小程序</h3>
+                        <p class="text">音乐播放器、词云生成器...轻松一下0.0</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-7 col-sm-9">
+                    <div class="pricing-style-one mt-40 wow fadeIn" data-wow-duration="1.5s" data-wow-delay="0.2s">
+                        <div class="pricing-icon text-center">
+                            <img class="image" style="width: 320px" src="{% static 'images/Lemon.jpg' %}" alt="">
+                        </div>
+                        <div class="pricing-header text-center">
+                            <h5 class="sub-title">音乐播放器</h5>
+                            <p class="month"><span class="price">Lemon</span>/米津玄师 </p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li><ion-icon name="receipt-outline" class="receipt-outline"></ion-icon>“「 将生活带给你的如柠檬的酸楚</li>
+                                <li> 酿成犹如柠檬汽水味般的甘甜 」”</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn rounded-buttons text-center">
+                            <a class="main-btn rounded-three" href="{% url 'user:music' %}" target="_blank">Play</a>
+                        </div>
+                    </div> <!-- pricing style one -->
+                </div>
+
+                <div class="col-lg-4 col-md-7 col-sm-9">
+                    <div class="pricing-style-one mt-40 wow fadeIn" data-wow-duration="1.5s" data-wow-delay="0.5s">
+                        <div class="pricing-icon text-center">
+                            <img class="image" style="width: 320px" src="{% static 'images/cy.jpg' %}" alt="">
+                        </div>
+                        <div class="pricing-header text-center">
+                            <h5 class="sub-title">词云生成器</h5>
+                            <p class="month"><span class="price">wordcloud</span></p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li><ion-icon name="receipt-outline" class="receipt-outline"></ion-icon> “关键词”</li>
+                                <li><ion-icon name="receipt-outline" class="receipt-outline"></ion-icon> 出现频率越高的词，字体越大</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn rounded-buttons text-center">
+                            <a class="main-btn rounded-three" href="{% url 'user:wordcloud' %}">Play</a>
+                        </div>
+                    </div> <!-- pricing style one -->
+                </div>
+
+                <div class="col-lg-4 col-md-7 col-sm-9">
+                    <div class="pricing-style-one mt-40 wow fadeIn" data-wow-duration="1.5s" data-wow-delay="0.8s">
+                        <div class="pricing-icon text-center">
+                            <img class="image" style="width: 320px" src="{% static 'images/overturn.jpg' %}" alt="">
+                        </div>
+                        <div class="pricing-header text-center">
+                            <h5 class="sub-title">旋转特效</h5>
+                            <p class="month"><span class="price">前端</span>/Js</p>
+                        </div>
+                        <div class="pricing-list">
+                            <ul>
+                                <li><ion-icon name="receipt-outline" class="receipt-outline"></ion-icon>  鼠标点击</li>
+                                <li><ion-icon name="receipt-outline" class="receipt-outline"></ion-icon> “「 酷炫。。。。。 」”</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-btn rounded-buttons text-center">
+                            <a class="main-btn rounded-three" href="{% url 'user:overturn' %}" target="_blank">Play</a>
+                        </div>
+                    </div> <!-- pricing style one -->
+                </div>
+            </div> <!-- row -->
+            <br>
+            <br>
+            <div class="pricing-btn rounded-buttons text-center">
+                <a class="main-btn rounded-three" href="{% url 'share' %}" >了解更多</a>
+            </div>
+        </div> <!-- container -->
+    </section>
+
+    <!--====== PRINICNG STYLE EIGHT ENDS ======-->
+
+    <!--====== CALL TO ACTION TWO PART START ======-->
+
+    <section id="call-action"  class="call-action-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="call-action-content mt-45">
+                        <h3 class="action-title">在我的博客中查找！</h3>
+                        <p class="text">寻找你需要的内容！</p>
+                    </div> <!-- call action content -->
+                </div>
+                <div class="col-lg-7">
+                    <div class="call-action-form mt-50">
+                        <form action="{% url 'article:search' %}" method="get" name="searchform" id="searchform" role="search">
+                            {% csrf_token %}
+                            <input name="search_word" type="text" placeholder="输入关键词">
+                            <div class="action-btn rounded-buttons">
+                                <button class="main-btn rounded-three">搜索</button>
+                            </div>
+                        </form>
+                    </div> <!-- call action form -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== CALL TO ACTION TWO PART ENDS ======-->
+
+    <!--====== TESTIMONIAL THREE PART START ======-->
+
+    <section id="testimonial" class="testimonial-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="head2 col-lg-6">
+                    <div class="section-title text-center pb-20">
+                        <h3 class="title">名句收录</h3>
+                        <p class="text">把喜欢的事做到极致，做给自己看，也做给这个世界看！</p>
+                    </div> <!-- section title -->
+                </div>
+            </div> <!-- row -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row testimonial-active">
+                        <div class="col-lg-4">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="testimonial-image">
+                                    <img style="height: 90px" src="{% static 'images/tbs.jpg' %}">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="text text1" ><span style="font-weight: bold">我所有的自负皆来自我的自卑，所有的英雄气概都来自于我的软弱。所有的振振有词是因为心里满是怀疑，深情是因为痛恨自己无情。这世界没有一件事情是虚空而生的。站在光里，背后就会有阴影，这深夜里一片静默，是因为你还没有听见声音。</span></p>
+                                    <h6 class="author-name">马良</h6>
+                                    <span class="sub-title">《坦白书》</span>
+                                </div>
+                            </div> <!-- single testimonial -->
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="testimonial-image">
+                                    <img style="height: 90px" src="{% static 'images/dkxs.jpg' %}">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="text text1"><span style="font-weight: bold">要把所有的夜归还给星河，<br>
+                                        把所有的春光归还给疏疏篱落，<br>
+                                        把所有的慵慵沉迷与不前，<br>
+                                        归还给过去的我。明日之我，<br>
+                                        胸中有丘壑，立马振山河。</span></p>
+                                    <h6 class="author-name">《德卡先生的信箱》</h6>
+                                    <span class="sub-title"></span>
+                                </div>
+                            </div> <!-- single testimonial -->
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="testimonial-image">
+                                    <img style="height: 90px" src="{% static 'images/lx.jpg' %}">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="text text1"><span style="font-weight: bold">愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光。就令萤火一般，也可以在黑暗里发一点光，不必等候炬火。此后如竟没有炬火，我便是唯一的光。</span></p>
+                                    <h6 class="author-name">鲁迅</h6>
+                                    <span class="sub-title"></span>
+                                </div>
+                            </div> <!-- single testimonial -->
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="testimonial-image">
+                                    <img style="height: 90px" src="{% static 'images/pfdsj.jpg' %}">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p class="text text1"><span style="font-weight: bold"> 也许人生仅有那么一两个辉煌的瞬间——甚至一生都可能在平淡无奇中度过……不过，细想过来，每个人的生活同样也是一个世界。即是最平凡的人，也得要为他那个世界的存在而战斗。</span></p>
+                                    <h6 class="author-name">路遥</h6>
+                                    <span class="sub-title">《平凡的世界》</span>
+                                </div>
+                            </div> <!-- single testimonial -->
+                        </div>
+                    </div> <!-- row -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+<footer style="color: #f7f7f7">
+    <div>Design by   趁早个人博客   蜀ICP备11002373号</div>
+</footer>
+
+
+
+
+</body>
+<script>
+    $(document).ready(function() {
+        //导航开始
+        $(window).on('scroll', function () {
+            if ($(window).scrollTop() > 100) {
+                $('#mainNav').removeClass('hc-top-up').addClass('hc-top-nd');
+                $(".hc-logobox").css('color','#0E2231');
+
+            } else {
+                $('#mainNav').removeClass('hc-top-nd').addClass('hc-top-up');
+                $(".hc-logobox").css('color', '#f5f5f5');
+            }
+        });
+        $('#oiBtn').click(function() {
+		//var oiicn = $('#oiBtn em')
+		$('#oiBtn').toggleClass("hc-io")
+		$('#navBox').toggleClass("hc-navbox01 hc-navbox")
+		if($('#navBox').hasClass("hc-navbox01")) {
+			$(".hc-logobox img").src;
+			$(".hc-logobox img").attr('src', '{% static 'images/blog2.png' %}');
+		} else {
+			$(".hc-logobox img").src;
+			$(".hc-logobox img").attr('src', '{% static 'images/blog1.png' %}');
+		}
+	}); //菜单按钮
+    });
+</script>
+
+
+{#<script src="{% static 'js/home/jquery.min.js' %}"></script>#}
+
+    <script src="{% static 'js/home/vendor/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/home/vendor/jjquery-1.12.4.min.js' %}"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="{% static 'js/home/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/home/popper.min.js' %}"></script>
+
+    <!--====== Slick js ======-->
+    <script src="{% static 'js/home/slick.min.js' %}"></script>
+
+    <!--====== Isotope js ======-->
+    <script src="{% static 'js/home/isotope.pkgd.min.js' %}"></script>
+
+    <!--====== Images Loaded js ======-->
+    <script src="{% static 'js/home/imagesloaded.pkgd.min.js' %}"></script>
+
+    <!--====== Magnific Popup js ======-->
+    <script src="{% static 'js/home/jquery.magnific-popup.min.js' %}"></script>
+
+    <!--====== Scrolling js ======-->
+    <script src="{% static 'js/home/scrolling-nav.js' %}"></script>
+    <script src="{% static 'js/home/jquery.easing.min.js' %}"></script>
+
+    <!--====== wow js ======-->
+    <script src="{% static 'js/home/wow.min.js' %}"></script>
+
+    <!--====== Main js ======-->
+    <script src="{% static 'js/home/main.js' %}"></script>
+
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
+
+
+</html>

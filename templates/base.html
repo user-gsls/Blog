@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        热诚博客 - 一个志趣相投的博客网站
+    </title>
+    <meta name="keywords" content="个人博客,趁早个人博客,个人博客模板,趁早" />
+    <meta name="description" content="趁早个人博客，一只小白学习生活" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'css/m.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pinglun.css' %}" rel="stylesheet">
+{#    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
+    <script src="{% static 'js/modernizr.js' %}js/modernizr.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+window.onload = function ()
+{
+	var oH2 = document.getElementsByTagName("h2")[0];
+	var oUl = document.getElementsByTagName("ul")[0];
+	oH2.onclick = function ()
+	{
+		var style = oUl.style;
+		style.display = style.display == "block" ? "none" : "block";
+		oH2.className = style.display == "block" ? "open" : ""
+	}
+}
+</script>
+
+    {% block mycss %}
+
+    {% endblock %}
+
+</head>
+<body>
+<header>
+  <div class="tophead">
+
+    <div class="logo"><a href="/">趁早个人博客</a></div>
+    <div id="mnav">
+      <h2><span class="navicon"></span></h2>
+      <ul>
+        <li><a href="{% url 'index' %}">网站首页</a></li>
+        <li><a href="{% url 'about_myself' %}">关于我</a></li>
+{#        <li><a href="list.html">学无止境</a></li>#}
+        <li><a href="{% url 'article:write' %}">写博客</a></li>
+        <li><a href="{% url 'share' %}">驿站</a></li>
+          {% if request.user.is_authenticated %}
+              <li><a href="{% url 'user:user_center' %}">个人中心</a></li>
+              <li><a href="{% url 'user:logout' %}">注销</a></li>
+          {% else %}
+              <li><a href="{% url 'user:login' %}">登录</a></li>
+          {% endif %}
+      </ul>
+    </div>
+    <nav class="topnav" id="topnav">
+      <ul>
+         <li><a href="{% url 'index' %}">网站首页</a></li>
+         <li><a href="{% url 'about_myself' %}">关于我</a></li>
+{#         <li><a href="list.html">学无止境</a></li>#}
+         <li><a href="{% url 'article:write' %}">写博客</a></li>
+          <li><a href="{% url 'share' %}">驿站</a></li>
+          {% if request.user.is_authenticated %}
+          <li><a href="{% url 'user:user_center' %}">{{ request.user.username }}</a> |<a href="{% url 'user:logout' %}">注销</a></li>
+          {% else %}
+          <li><a href="{% url 'user:login' %}">登录</a></li>
+          {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+{% block content %}
+{% endblock content %}
+
+<footer>
+  <p>Design by <a href="/">趁早个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
+</footer>
+<script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<script type="text/javascript"color="0,0,0"opacity="0.6"count="99" zIndex="-1" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+</body>
+
+{% block myjs %}
+
+{% endblock %}
+<script src="{% static 'js/nav.js' %}"></script>
+</html>

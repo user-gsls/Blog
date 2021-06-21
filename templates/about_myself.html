@@ -1,0 +1,213 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+{% block title %}
+<title>关于我</title>
+{% endblock %}
+
+{% block mycss %}
+<link href="{% static 'css/index-4.css' %}" rel="stylesheet">
+<style>
+#warp{
+				width: 100%;
+				height: 900px;
+				position: absolute;
+				background: url({% static 'images/bear/bg-space.png' %}) repeat-x;
+				animation: bgrun 450s linear infinite;
+                z-index: -999;
+			}
+#x{
+				width: 200px;
+				height: 100px;
+				bottom: 10px;
+				left: -4%;
+				margin-left:-100px ;
+				position: absolute;
+				background:url({% static 'images/bear/bear.png' %}) no-repeat 0 0;
+				animation: eo1 3.6s step-end .6s forwards,run1 1s steps(8,end) 4.2s infinite,bx linear .1s forwards;
+				z-index: 10;
+			}
+#m1{
+				width: 100%;
+				height: 10.5em;
+				position: absolute;
+				bottom: 0;
+				background: url({% static 'images/bear/mountain1.png' %}) repeat-x;
+				z-index: 9;
+				animation: run2 100s linear infinite,suof 0.8s linear forwards;
+				background-size: auto 100%;
+			}
+#m2{
+				width: 100%;
+				height: 16.6em;
+				position: absolute;
+				background-size: auto 100%;
+				background: url({% static 'images/bear/mountain2.png' %}) repeat-x;
+				z-index: 8;
+				bottom: 0;
+				animation: run3 170s linear infinite,suof 0.8s linear forwards;
+			}
+#m3{
+				width: 100%;
+				height: 24.5em;
+				position: absolute;
+				background-size: auto 100%;
+				background: url({% static 'images/bear/mountain3.png' %}) repeat-x;
+				z-index: 7;
+				bottom: 0%;
+				animation: run4 360s linear infinite,suof 0.8s linear forwards;
+			}
+.shine1{
+				background: url({% static 'images/bear/bg-aurora-1.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear .2s infinite ;}
+			.shine2{
+				background: url({% static 'images/bear/bg-aurora-2.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear .7s infinite ;
+			}
+			.shine3{
+				background: url({% static 'images/bear/bg-aurora-3.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 1.2s infinite ;
+			}
+			.shine4{
+				background: url({% static 'images/bear/bg-aurora-4.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 1.7s infinite ;
+			}
+			.shine5{
+				background: url({% static 'images/bear/bg-aurora-5.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 2.2s infinite ;
+			}
+			.shine6{
+				background: url({% static 'images/bear/bg-aurora-4.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 2.7s infinite ;
+			}
+			.shine7{
+				background: url({% static 'images/bear/bg-aurora-3.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 3.2s infinite ;
+			}
+			.shine8{
+				background: url({% static 'images/bear/bg-aurora-2.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 3.7s infinite ;
+			}
+			.shine9{
+				background: url({% static 'images/bear/bg-aurora-1.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 4.2s infinite ;
+			}
+			.shine10{
+				background: url({% static 'images/bear/bg-aurora-2.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 4.7s infinite ;
+			}
+			.shine11{
+				background: url({% static 'images/bear/bg-aurora-3.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 5.2s infinite ;
+			}
+			.shine12{
+				background: url({% static 'images/bear/bg-aurora-4.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 5.7s infinite ;
+			}
+			.shine13{
+				background: url({% static 'images/bear/bg-aurora-5.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 6.2s infinite ;
+			}
+			.shine14{
+				background: url({% static 'images/bear/bg-aurora-4.png' %}) no-repeat;
+				background-size:100% auto;
+				animation:aurora 7s linear 6.7s infinite ;
+			}
+footer{
+    position: absolute;
+    bottom: -140px;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+    <div id="warp">
+
+
+			<div id="x"></div>
+			<div id="m1" calss="shan"></div>
+			<div id="m2" calss="shan"></div>
+			<div id="m3" calss="shan"></div>
+			<div id="shine">
+				<div class="shine1 cl"></div>
+				<div calss="shine2 cl"></div>
+				<div class="shine3 cl"></div>
+				<div class="shine4 cl"></div>
+				<div class="shine5 cl"></div>
+				<div class="shine6 cl"></div>
+				<div class="shine7 cl"></div>
+				<div class="shine8 cl"></div>
+				<div class="shine9 cl"></div>
+				<div class="shine10 cl"></div>
+				<div class="shine11 cl"></div>
+				<div class="shine12 cl"></div>
+				<div class="shine13 cl"></div>
+				<div class="shine14 cl"></div>
+			</div>
+
+		</div>
+<article style="z-index: 999">
+  <h1 class="t_nav"><span>冬去春来，枯荣无恙。</span><a href="{% url 'home' %}" class="n1">网站首页</a><a href="#" class="n2">关于我</a></h1>
+  <div class="ab_box">
+    <div class="leftbox">
+      <div class="newsview">
+        <div class="news_infos">
+            <h2>About Myself</h2>
+            <br>
+            <p>性别：男</p>
+            <P>年龄：经典00后</P>
+            <p>身高：你猜</p>
+            <P>体重：65kg</P>
+            <P>爱好：健身，学习</P>
+            <P>感情：母胎solo至今</P>
+            <P>&nbsp; &nbsp; 19年暑期，这个博客刚刚搭建成功，因为大三开学，专业课增多，没有多余精力维持博客，就一直处于闲置状态。2020春节因为疫情使寒假的大大延长，我也有时间对这个半成品的博客进行重构。这个博客将记录我这个学生党平时的学习生活等等...</P>
+            <br>
+            <p>希望这里面的内容能对你有所帮助0.0</p>
+            <br>
+            <P>"愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光。就令萤火一般，也可以在黑暗里发一点光，不必等候炬火。此后如竟没有炬火，我便是唯一的光。"</P>
+            <p><span style="float:right">——鲁迅</span></p>
+
+
+          &nbsp;
+          <p></p>
+          <br />
+
+        </div>
+      </div>
+    </div>
+    <div class="rightbox">
+      <div class="aboutme">
+        <h2 class="hometitle">关于我</h2>
+        <div class="avatar"> <img src="{% static 'images/mine1.jpg' %}"> </div>
+        <div class="ab_con">
+          <p>网名：趁早  </p>
+          <p>职业：学生党 </p>
+{#          <p>个人微信：yangqq_1987</p>#}
+          <p>邮箱：1753828985@qq.com</p>
+        </div>
+      </div>
+{#      <div class="weixin">#}
+{#        <h2 class="hometitle">微信关注</h2>#}
+{#        <ul>#}
+{#          <img src="images/wx.jpg">#}
+{#        </ul>#}
+{#      </div>#}
+    </div>
+  </div>
+</article>
+
+{% endblock content%}
+

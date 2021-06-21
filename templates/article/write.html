@@ -1,0 +1,59 @@
+{% extends 'base1.html' %}
+{% load staticfiles %}
+{% block  title %}
+    <title>写博客</title>
+{% endblock %}
+
+{% block mycss %}
+{#    <link href="{% static 'css/write/normalize.css' %}" rel="stylesheet">#}
+{#    <link href="{% static 'css/write/demo.css' %}" rel="stylesheet">#}
+{#    <link href="{% static 'css/write/component.css' %}" rel="stylesheet">#}
+{#    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.0.1/css/bootstrap.css" rel="stylesheet">#}
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" style="background: #f1f1f1">
+    <form action="{% url 'article:write' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+         <div class="form-group">
+             <label >标题</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+             <label >简介</label>
+            {{ form.desc }}
+        </div>
+        <div class="form-group">
+             <label for="exampleInputEmail1">内容:</label>
+            <br>
+            {{ form.content }}
+        </div>
+{#        <div class="form-group">#}
+{#            <label >文章图片</label>#}
+{#            {{ form.image }}#}
+{#            <p class="help-block">为文章封面选择图片</p>#}
+{#        </div>#}
+        <div class="form-group">
+            <label for="exampleInputFile">文章标签</label>
+            <br>
+            {{ form.tags }}
+            <p class="help-block">按住Ctrl多选标签</p>
+        </div>
+
+        <input type="submit" class="btn btn-primary btn-lg" value="发表文章">
+    </form>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+    <br>
+{% endblock %}
+
+{% block myjs %}
+
+{% endblock %}

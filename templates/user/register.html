@@ -1,0 +1,144 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>登录 & 注册</title>
+      <!-- Meta tags -->
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="keywords" content=" Astronauts sign up & login Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design"
+         />
+      <script>
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+      </script>
+      <!-- Meta tags -->
+      <!--pop-ups-->
+      <link href="{% static 'css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+      <!-- //pop-ups-->
+      <!--stylesheets-->
+      <link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' media="all">
+      <!--//style sheet end here-->
+      <link href="//fonts.googleapis.com/css?family=Barlow:300,400,500" rel="stylesheet">
+   </head>
+   <body>
+      <h1 class="header-w3ls">
+          sign up & login
+      </h1>
+      <div class="art-bothside">
+         <div class="mid-cls">
+            <div class="art-right-w3ls">
+               <h2>用户注册</h2>
+{#               <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet</p>#}
+               <form action="#" method="post">{% csrf_token %}
+                  <div class="main">
+                      <h1 id="result" style="color: #dd1e3b;">{{ msg }}</h1>
+                     <div class="form-left-to-w3l">
+                        <input type="text" name="username" placeholder="名称" required="">
+                     </div>
+                     <div class="form-right-w3ls">
+                        <input type="email" name="email" placeholder="邮箱" required="">
+                     </div>
+
+                  </div>
+                  <div class="main">
+                     <div class="form-left-to-w3l">
+                        <input type="password" name="password" placeholder="密码" id="password" required="">
+                        <div class="clear"></div>
+                     </div>
+                     <div class="form-right-w3ls ">
+                        <input type="password" name="repassword" placeholder="确认密码" id="re_password" required="">
+                     </div>
+                  </div>
+                  <div class="btnn">
+                     <button id="id_captcha_1" type="submit" value="提交注册" name="login">注册</button>
+                  </div>
+               </form>
+               <div class="banner-agileits-btm">
+                  <div class="w3layouts_more-buttn">
+                     <h3>已经有了账号? <a href="{% url 'user:login' %}" class="play-icon popup-with-zoom-anim">登录</a></h3>
+                  </div>
+                  <div id="small-dialog1" class="mfp-hide w3ls_small_dialog wthree_pop">
+                     <div class="agileits_modal_body">
+                        <!--login form-->
+                        <div class="letter-w3ls">
+                           <form action="#" method="post">
+                              <div class="form-left-to-w3l">
+                                 <input type="text" name="name" placeholder="Name" required="">
+                              </div>
+                              <div class="form-right-w3ls">
+                                 <input type="email" name="email" placeholder="Email" required="">
+                              </div>
+                              <div class="form-right-w3ls ">
+                                 <input type="password" name="password" placeholder="Password" required="">
+                              </div>
+                              <div class="btnn">
+                                 <button type="submit">注册</button><br>
+                              </div>
+                           </form>
+                           <div class="clear"></div>
+                        </div>
+                        <!--//login form-->
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="art-left-w3ls">
+               <img src="{% static 'images/right1.jpg' %}" class="img-fluid" alt="">
+            </div>
+         </div>
+      </div>
+      <div class="copy">
+         <p>&copy;2020 sign up & login Form. All Rights Reserved | Design by <a href="http://www.xmoban.cn" target="_blank">ZBC</a></p>
+      </div>
+      <!--js working-->
+      <script src='{% static 'js/jquery-2.2.3.min.js' %}'></script>
+      <!--//js working-->
+      <script>
+         var password = document.getElementById("password")
+           , confirm_password = document.getElementById("confirm_password");
+         
+         function validatePassword(){
+           if(password.value != confirm_password.value) {
+             confirm_password.setCustomValidity("两次密码不一致！");
+           } else {
+             confirm_password.setCustomValidity('');
+           }
+         }
+         
+         password.onchange = validatePassword;
+         confirm_password.onkeyup = validatePassword;
+      </script>
+      <!--//scripts-->
+      <script src="js/jquery.magnific-popup.js"></script>
+      <!-- //pop-up-box -->
+      <script>
+         $(document).ready(function () {
+         	$('.popup-with-zoom-anim').magnificPopup({
+         		type: 'inline',
+         		fixedContentPos: false,
+         		fixedBgPos: true,
+         		overflowY: 'auto',
+         		closeBtnInside: true,
+         		preloader: false,
+         		midClick: true,
+         		removalDelay: 300,
+         		mainClass: 'my-mfp-zoom-in'
+         	});
+         
+         });
+      </script>
+      <script>
+          //单击刷新图片
+          $(function(){
+              //验证验证码是否正确
+              $('#id_captcha_1').click(function (){
+
+                      $('#result').remove();
+
+                  })
+          });
+
+      </script>
+      <!-- //pop-up-box -->
+   </body>
+</html>
